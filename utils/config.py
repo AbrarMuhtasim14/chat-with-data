@@ -1,16 +1,63 @@
 # utils/config.py
+
+
+# utils/config.py
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load .env for local development
+def _load_env():
+    """Find and load .env from project root."""
+    current = Path(__file__).resolve().parent
+    project_root = current.parent
+
+    env_path = project_root / ".env"
+    if env_path.exists():
+        load_dotenv(env_path)
+        return
+
+    cwd_env = Path.cwd() / ".env"
+    if cwd_env.exists():
+        load_dotenv(cwd_env)
+        return
+
+    parent_env = Path.cwd().parent / ".env"
+    if parent_env.exists():
+        load_dotenv(parent_env)
+        return
+
+    load_dotenv()
+
+_load_env()
+
+# Try Streamlit secrets first (for cloud deployment), 
+# then fall back to env vars (for local development)
+def _get_secret(key):
+    """Get secret from Streamlit secrets (cloud) or env vars (local)."""
+    try:
+        import streamlit as st
+        if hasattr(st, "secrets") and key in st.secrets:
+            return st.secrets[key]
+    except Exception:
+        pass
+    return os.getenv(key)
 
 # ════════════════════════════════════════════════
 # CONNECTION & LLM CONFIG
 # ════════════════════════════════════════════════
-CLEAN_DB_URI = os.getenv("CLEAN_SUPABASE_DB_URI")
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+CLEAN_DB_URI = _get_secret("CLEAN_SUPABASE_DB_URI")
+OPENROUTER_API_KEY = _get_secret("OPENROUTER_API_KEY")
 LLM_MODEL = "openrouter/x-ai/grok-4.1-fast"
 LLM_BASE_URL = "https://openrouter.ai/api/v1"
+
+if not CLEAN_DB_URI:
+    import warnings
+    warnings.warn(
+        "CLEAN_SUPABASE_DB_URI not found. "
+        "Set it in .env (local) or Streamlit secrets (cloud)."
+    )
+
 
 # ════════════════════════════════════════════════
 # SCHEMA MAP

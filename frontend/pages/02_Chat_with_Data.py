@@ -1,4 +1,9 @@
 # frontend/pages/02_Chat_with_Data.py
+
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+
 """
 Chat with Your Data — AtliQ Hospitality
 
