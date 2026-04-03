@@ -1,4 +1,4 @@
-# 🏨 AtliQ Hospitality — Enterprise AI Analytics Platform
+# Chat with your data — Enterprise AI Analytics Platform
 
 > An enterprise-grade "Chat with Your Data" system that enables stakeholders to query hotel performance data in plain English, backed by a deterministic metrics engine, real-time KPI monitoring, and automated anomaly detection.
 
