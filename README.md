@@ -20,7 +20,7 @@
 
 ## 🎯 Live Demo
 
-🔗 **[Launch App on Streamlit Cloud](https://YOUR_USERNAME-atliq-hospitality.streamlit.app)**
+🔗 **[Launch App on Streamlit Cloud](https://hospitality-acwk5lhj7j9dus5chmjbrs.streamlit.app/))**
 
 ### Dashboard Preview
 
