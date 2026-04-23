@@ -542,14 +542,7 @@ All KPI calculations verified against a Power BI dashboard built on the same dat
 - [ ] Role-based access control
 - [ ] Mobile-responsive dashboard
 
----
 
-## 👤 Author
-
-**Your Name**
-- LinkedIn: [your-linkedin](https://linkedin.com/in/YOUR_PROFILE)
-- GitHub: [your-github](https://github.com/YOUR_USERNAME)
-- Email: your.email@example.com
 
 ---
 
